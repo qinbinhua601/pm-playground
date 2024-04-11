@@ -1,4 +1,4 @@
-import { Node } from 'prosemirror-model'
+import { Node, NodeSpec } from 'prosemirror-model'
 
 // 'uneditable',
 export default {
@@ -42,4 +42,4 @@ export default {
     }
     return ['a', attrs, '@ ', ['b', name]]
   },
-}
+} as NodeSpec

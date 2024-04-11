@@ -1,6 +1,9 @@
+import { EditorView } from "prosemirror-view";
+import { Node } from "prosemirror-model";
+
 export class UneditableView {
   dom: HTMLSpanElement
-  constructor(node, view, getPos) {
+  constructor(node: Node, _view:EditorView, _getPos: () => number) {
     // console.log(node);
     this.dom = document.createElement("span");
     this.dom.style.color = 'red'
