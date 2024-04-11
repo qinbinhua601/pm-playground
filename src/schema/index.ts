@@ -7,6 +7,7 @@ import atom_demo from './atom_demo'
 import { ListAttributes, ListToDOMOptions, createListSpec, listToDOM } from 'prosemirror-flat-list'
 
 let nodes = schema.spec.nodes
+nodes = nodes.addToEnd('uneditable', uneditable)
 nodes = nodes.addToEnd('atom_demo', atom_demo)
 nodes = nodes.remove('image')
 // remote the original pm list
@@ -14,11 +15,12 @@ nodes = nodes.remove('image')
 // nodes = nodes.addToEnd('flat_list', flat_list)
 nodes = nodes.append({ list: customCreateListSpec() })
 
-console.log(nodes)
+schema.marks.strong.spec.inclusive = false;
+
 export const mySchema = new Schema({
   // nodes: addListNodes(nodes, 'paragraph block*', 'block'),
   nodes,
-  marks: schema.spec.marks,
+  marks: schema.spec.marks
 })
 
 function customCreateListSpec() {

@@ -18,6 +18,7 @@ import { keymap } from 'prosemirror-keymap'
 import { inputRules } from 'prosemirror-inputrules'
 import { mySchema } from './schema'
 import injectToWindow from './utils/inject'
+import { UneditableView } from './extensions/uneditable/UneditableView'
 
 const listKeymapPlugin = keymap(listKeymap)
 const listInputRulePlugin = inputRules({ rules: listInputRules })
@@ -45,7 +46,11 @@ window.view = new EditorView(document.querySelector('#editor'), {
     ],
   }),
   editable: () => true,
-  nodeViews: {},
+  nodeViews: {
+    uneditable(node, view, getPos) {
+      return new UneditableView(node, view, getPos)
+    },
+  },
 })
 
 // add dev tools

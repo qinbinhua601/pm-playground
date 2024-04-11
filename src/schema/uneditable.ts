@@ -1,14 +1,17 @@
+import { Node } from 'prosemirror-model'
+
 // 'uneditable', 
 export default {
-  alowGapCursor: true,
+  inline: true,
+  // alowGapCursor: true,
   atom: true,
   // selectable: false,
-  group: 'block',
+  group: 'inline',
   attrs: {
     num: { default: 0 },
   },
   // isLeaf: true,
-  toDOM: (node) => {
+  toDOM: (node: Node) => {
     const attrs = {
       'data-uneditable': 'true',
       'data-num': node.attrs.num.toString(),
@@ -20,8 +23,8 @@ export default {
 
   parseDOM: [
     {
-      tag: 'div[data-uneditable]',
-      getAttrs: node => {
+      tag: 'span[data-uneditable]',
+      getAttrs: (node: HTMLSpanElement) => {
         return {
           num: Number(node.getAttribute('data-num'))
         }
