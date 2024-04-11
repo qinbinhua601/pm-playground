@@ -3,12 +3,14 @@ import { schema } from 'prosemirror-schema-basic'
 // import { addListNodes } from 'prosemirror-schema-list'
 import uneditable from './uneditable'
 import atom_demo from './atom_demo'
+import mention from './mention'
 // import flat_list from './flat_list'
 import { ListAttributes, ListToDOMOptions, createListSpec, listToDOM } from 'prosemirror-flat-list'
 
 let nodes = schema.spec.nodes
 nodes = nodes.addToEnd('uneditable', uneditable)
 nodes = nodes.addToEnd('atom_demo', atom_demo)
+nodes = nodes.addToEnd('mention', mention)
 nodes = nodes.remove('image')
 // remote the original pm list
 // nodes = nodes.remove('list')

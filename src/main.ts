@@ -19,6 +19,7 @@ import { inputRules } from 'prosemirror-inputrules'
 import { mySchema } from './schema'
 import injectToWindow from './utils/inject'
 import { UneditableView } from './extensions/uneditable/UneditableView'
+import fixChromeComposition from './plugins/fixChromeComposition'
 
 const listKeymapPlugin = keymap(listKeymap)
 const listInputRulePlugin = inputRules({ rules: listInputRules })
@@ -42,7 +43,8 @@ window.view = new EditorView(document.querySelector('#editor'), {
       listInputRulePlugin,
       ...listPlugins,
       ...exampleSetup({ schema: mySchema }),
-      gapCursor()
+      gapCursor(),
+      fixChromeComposition()
     ],
   }),
   editable: () => true,

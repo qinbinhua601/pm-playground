@@ -11,11 +11,11 @@ export class UneditableView {
   }
   selectNode() {
     this.dom.classList.add("ProseMirror-selectednode")
-    this.dom.removeAttribute('contenteditable')
+    // this.dom.removeAttribute('contenteditable')
   }
   deselectNode() {
     this.dom.classList.remove("ProseMirror-selectednode")
-    this.dom.setAttribute('contenteditable', 'false')
+    // this.dom.setAttribute('contenteditable', 'false')
     // this.dom.removeAttribute('contenteditable')
   }
 }

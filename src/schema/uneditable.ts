@@ -3,7 +3,7 @@ import { Node } from 'prosemirror-model'
 // 'uneditable', 
 export default {
   inline: true,
-  // alowGapCursor: true,
+  alowGapCursor: true,
   atom: true,
   // selectable: false,
   group: 'inline',
