@@ -22,6 +22,7 @@ export default function () {
                     (m) => m.type.spec.inclusive === false && m.type.name === 'strong'
                   )))
             ) {
+              console.log('trigger the hacking solution 1111')
               // Need to wrap the cursor in mark nodes different from the ones in the DOM context
               view.markCursor = view.state.storedMarks || $pos.marks()
               __endComposition(view)

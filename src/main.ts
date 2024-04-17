@@ -7,7 +7,8 @@ import { applyDevTools } from 'prosemirror-dev-toolkit'
 import { mySchema } from './schema'
 import injectToWindow from './utils/inject'
 import { UneditableView } from './extensions/uneditable/UneditableView'
-import fixChromeComposition from './plugins/fixChromeComposition'
+import fixChromeCompositionSolution1 from './plugins/fixChromeComposition'
+import fixChromeCompositionSolution2 from './plugins/fixChromeComposition2'
 import { listInputRulePlugin, listKeymapPlugin, customCreateListPlugins } from './extensions/flatList'
 
 // create the EditorView instance
@@ -22,7 +23,8 @@ window.view = new EditorView(document.querySelector('#editor'), {
       ...customCreateListPlugins({ schema: mySchema }),
       ...exampleSetup({ schema: mySchema }),
       gapCursor(),
-      fixChromeComposition()
+      fixChromeCompositionSolution1(),
+      // fixChromeCompositionSolution2(),
     ],
   }),
   editable: () => true,
@@ -37,3 +39,14 @@ window.view = new EditorView(document.querySelector('#editor'), {
 applyDevTools(window.view)
 
 injectToWindow()
+
+
+const plugins = window.view.state.plugins.map((item) => item.key)
+
+if(plugins.includes('fixChromeCompositionKey$')) {
+  document.getElementById('app').innerText = 'fixChromeComposition'
+}
+
+if (plugins.includes('fixChromeCompositionSolution2Key$')) {
+  document.getElementById('app').innerText = 'fixChromeComposition2'
+}

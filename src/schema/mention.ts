@@ -1,6 +1,6 @@
 import { Node, NodeSpec } from 'prosemirror-model'
 
-// 'uneditable',
+// 'mention',
 export default {
   inline: true,
   alowGapCursor: true,

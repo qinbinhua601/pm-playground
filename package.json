@@ -6,9 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "HEADLESS=false jest",
+    "test:headless": "jest"
   },
   "devDependencies": {
+    "@argos-ci/cli": "^2.0.1",
+    "@argos-ci/puppeteer": "^2.1.0",
+    "jest": "^29.7.0",
+    "jest-puppeteer": "^10.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   },
