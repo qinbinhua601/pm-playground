@@ -23,10 +23,11 @@ describe('baidu', () => {
     const editorDOM = await page.evaluate(() => {
       // console.log('window', window.view);
       return {
-        a: document.querySelector('.ProseMirror').innerText
+        a: document.querySelector('.ProseMirror').innerText,
+        rect: document.querySelector('.ProseMirror').getBoundingClientRect().width
       };
     })
-    expect(editorDOM.a).toBeDefined();
+    expect(editorDOM).toBe({});
     await expect(page.title()).resolves.toMatch('pm playground');
   });
 

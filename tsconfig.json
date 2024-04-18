@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["cypress", "node", "cypress-real-events"],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
