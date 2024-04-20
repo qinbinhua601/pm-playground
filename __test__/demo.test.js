@@ -27,7 +27,11 @@ describe('baidu', () => {
         rect: document.querySelector('.ProseMirror').getBoundingClientRect().width
       };
     })
-    expect(editorDOM).toBe({});
+    expect(editorDOM).toEqual({
+      a: '123123@ qinbinhua--------------------------------------------------------AAA',
+      rect: 780
+    });
+    // await jestPuppeteer.debug();
     await expect(page.title()).resolves.toMatch('pm playground');
   });
 
