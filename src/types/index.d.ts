@@ -7,8 +7,8 @@ declare global {
     getJsonFromHTML: any;
     getHTMLStringFromState: any;
     view: EditorView;
-    NodeSelection: NodeSelection;
-    TextSelection: TextSelection;
+    NodeSelection: typeof NodeSelection;
+    TextSelection: typeof TextSelection;
     copyHtmlToClipboard: () => void;
     reconfig: () => void;
     currentSelectedIndex: number;

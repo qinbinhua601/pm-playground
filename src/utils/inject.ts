@@ -21,11 +21,18 @@ function getValue() {
   return div.textContent
 }
 
-let reusedRange= null
+let reusedRange: Range | null = null
 
-const textRange = function(node, from, to) {
-  let range = reusedRange || (reusedRange = document.createRange())
-  range.setEnd(node, to == null ? node.nodeValue.length : to)
+const textRange = function(node: HTMLElement, from: number, to: number) {
+
+  let range
+  if (reusedRange) {
+    range = reusedRange
+  } else {
+    reusedRange = document.createRange()
+    range = reusedRange
+  }
+  range.setEnd(node, to ?? node?.nodeValue?.length)
   range.setStart(node, from || 0)
   return range
 }

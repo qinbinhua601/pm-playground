@@ -8,7 +8,12 @@ export default function () {
     key: fixChromeCompositionKey,
     props: {
       handleDOMEvents: {
-        compositionstart(view: EditorView) {
+        compositionstart(_view: EditorView) {
+          const view = _view as EditorView & {
+            domObserver: any,
+            markCursor: any,
+            input: any,
+          }
           if (!view.composing) {
             view.domObserver.flush()
             let { state } = view,
