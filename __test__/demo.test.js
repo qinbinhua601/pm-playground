@@ -11,7 +11,7 @@ function wait(t) {
 
 
 // 环境是nodejs，实际访问不到对象
-describe('baidu', () => {
+describe('editor UI related', () => {
   beforeAll(async () => {
     await page.goto('http://localhost:4000');
     await page.waitForSelector('.ProseMirror');
@@ -19,20 +19,22 @@ describe('baidu', () => {
   });
   
   it('should be titled "pm playground"', async () => {
-    await wait(3);
+    await expect(page.title()).resolves.toMatch('pm playground');
+  });
+
+  it('ensure editor rectWidth = 780 & editorContent is right', async () => {
     const editorDOM = await page.evaluate(() => {
       // console.log('window', window.view);
       return {
-        a: document.querySelector('.ProseMirror').innerText,
-        rect: document.querySelector('.ProseMirror').getBoundingClientRect().width
+        editorContent: window.view.state.doc.toString(),
+        rectWidth: window.view.dom.getBoundingClientRect().width
       };
     })
     expect(editorDOM).toEqual({
-      a: '123123@ qinbinhua--------------------------------------------------------AAA',
-      rect: 780
+      editorContent: 'doc(paragraph("123123", strong(mention), "--------------------------------------------------------AAA"))',
+      rectWidth: 780
     });
     // await jestPuppeteer.debug();
-    await expect(page.title()).resolves.toMatch('pm playground');
-  });
+  })
 
 });
