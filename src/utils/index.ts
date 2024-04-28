@@ -14,10 +14,9 @@ export const getHTMLStringFromState = (state: EditorState) => {
 export const getJsonFromHTML = (html: string) => {
   const dom = document.createElement('div')
   dom.innerHTML = html
-  const res = DOMParser.fromSchema(mySchema)
-  .parse(dom)
+  const res = DOMParser.fromSchema(mySchema).parse(dom)
   // console.log(res)
   return res
-
-
 }
+
+

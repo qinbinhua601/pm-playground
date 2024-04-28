@@ -11,20 +11,26 @@ import fixChromeCompositionSolution1 from './plugins/fixChromeComposition'
 import { listInputRulePlugin, listKeymapPlugin, customCreateListPlugins } from './extensions/flatList'
 import showPluginsAvailability from './utils/showPluginsAvailability'
 
+const plugins = [
+  listKeymapPlugin,
+  listInputRulePlugin,
+  ...customCreateListPlugins({ schema: mySchema }),
+  ...exampleSetup({ schema: mySchema }),
+  gapCursor(),
+  // fixChromeCompositionSolution1(),
+]
+
+if (location.href.indexOf('?fixChromeCompositionSolution1=1') !== -1) {
+  plugins.push(fixChromeCompositionSolution1())
+}
+
 // create the EditorView instance
 window.view = new EditorView(document.querySelector('#editor'), {
   state: EditorState.create({
     doc: DOMParser.fromSchema(mySchema).parse(
       document.querySelector('#content') as HTMLDivElement
     ),
-    plugins: [
-      listKeymapPlugin,
-      listInputRulePlugin,
-      ...customCreateListPlugins({ schema: mySchema }),
-      ...exampleSetup({ schema: mySchema }),
-      gapCursor(),
-      fixChromeCompositionSolution1(),
-    ],
+    plugins
   }),
   editable: () => true,
   nodeViews: {
